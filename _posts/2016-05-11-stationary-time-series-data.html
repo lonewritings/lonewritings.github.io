@@ -1,0 +1,44 @@
+---
+layout: post
+title: Stationary Time-series Data
+date: 2016-05-11 15:18:14.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Notes
+tags:
+- DataSciene
+- time-series
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '23059758671'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<p>Before fitting any existing model to time-series data we check for different things</p>
+<ul>
+<li>Stationarity of time series: Stationarity  of time series is ensured by three properties [1].  A pictorial depiction of these properties is shown at <a href="http://www.analyticsvidhya.com/blog/2015/12/complete-tutorial-time-series-modeling/">link</a>
+<ul>
+<li>The mean of time-series (<em>x<sub>t</sub></em>) is the same for all <em>x<sub>t</sub></em> .</li>
+<li>The variance of time-series (<em>x<sub>t</sub></em>) is the same for all <em>x<sub>t</sub></em> .</li>
+<li>The covariance (and also correlation) between <em>x<sub>t</sub></em> and <em>x<sub>t-h</sub></em> is the same for all <em>t</em>.</li>
+</ul>
+</li>
+</ul>
+<p>We care about stationarity because most time-series models  assume stationarity. Also, a time-series can be stationarized by detrending and differencing.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>References :</p>
+<ol>
+<li>https://onlinecourses.science.psu.edu/stat510/node/60</li>
+<li>http://www.analyticsvidhya.com/blog/2015/12/complete-tutorial-time-series-modeling/</li>
+</ol>
+<p>&nbsp;</p>

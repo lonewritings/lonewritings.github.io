@@ -1,0 +1,33 @@
+---
+layout: post
+title: 'Area Under the Curve (AUC): A performance metric'
+date: 2016-08-17 16:33:12.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Notes
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '25871882614'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<p>Consider a scenario where we have observations defined by the associated attributes. Further, assume that we know the actual class label of each observation as shown in below figure. [Note: this data is random and there is no relation between I/O]</p>
+<p><img class="  wp-image-1112 aligncenter" src="{{ site.baseurl }}/assets/screen-shot-2016-08-17-at-15-48-48.png?w=600" alt="Screen Shot 2016-08-17 at 15.48.48" width="448" height="191" /></p>
+<p>Mostly, classifiers predict output in the form of categorical labels, but there are instances where a classifier outputs final result in the form of a score, say a score in the range of [0, 1]. The above snapshot figure shows such a instance, where our classifier predicts output in the form of a score (shown in predicted Label column).</p>
+<p>Till this, everything is ok, but the question is how can we compute the performance of such classifiers. I mean, well-known metrics like precision and recall are impossible to compute for such scenarios! Although, humans can attach meaning to theses numbers/score, say we consider a threshold value on predicted label, and the values higher than the threshold are labelled as <em>Z a</em>nd the values below the threshold are labelled as<em> Y.  </em>On assuming a threshold of 0.8, we get something like this</p>
+<p><em><img class="  wp-image-1138 aligncenter" src="{{ site.baseurl }}/assets/screen-shot-2016-08-17-at-16-07-38.png" alt="Screen Shot 2016-08-17 at 16.07.38" width="521" height="180" /> </em></p>
+<p>Now, we have categorical labels both in the prediction column and in actual label column. Is it fair now to compute metrics like precision and recall ? Wait, we might get different results for precision and recall if we consider different threshold. Now, it is really troublesome to compute existing well-known metrics for these type of scenarios.</p>
+<p>For such type of scenarios, we use another metric known as <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic" target="_blank">Area Under the Curve</a> (AUC). The curve is known by the name of Receiver Operating Characteristics (<a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic">ROC</a>). The ROC curves corresponding to four (A, B, C, and D) different classifiers/methods are shown in below figure as</p>
+<p><img class="  wp-image-1163 aligncenter" src="{{ site.baseurl }}/assets/screen-shot-2016-08-17-at-16-25-18.png" alt="Screen Shot 2016-08-17 at 16.25.18" width="560" height="332" /></p>
+<p>The true positive rate  (TPR) give information about correctly identified instances while as false positive rate (FPR) gives information about misclassified instances. The ideal ROC curve have a TPR of 1 and FPR of 0. To extract the meaningful information from these ROC curves, we use AUC value which represents the area under the considered ROC curve. The AUC value ranges between [0, 1]. A value of 1 represents ideal/perfect performance and value of 0.5 represents random (50/50) performance.</p>
+<p>The AUC value is computed at various thresholds. So, we can say that the final AUC value is not biased by a single threshold.</p>

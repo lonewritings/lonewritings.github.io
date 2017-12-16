@@ -1,0 +1,51 @@
+---
+layout: post
+title: Identify Collinearity in Multiple Predictor Variables
+date: 2016-04-21 11:10:31.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Notes
+tags:
+- collinearity
+- dataScience
+meta:
+  _g_feedback_shortcode: '[contact-field label="Name" type="name" required="1" /][contact-field
+    label="Email" type="email" required="1" /][contact-field label="Website" type="url"
+    /][contact-field label="Comment" type="textarea" required="1" /]'
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '23059671956'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<p>Fitting a correct model to data is a laborious task - it needs to try various models to find the relation between predictor variables and a response variable. Before fitting a model to data we need to ensure that data is standardised. Standardisation ensures that each predictor variable is on the same scale. For example, although human heights do not vary too much in range but the weight varies too much among individuals. This means the scale of heights predictor is small as compared to weight. We should not use them directly for modelling. Instead, both of the predictors should be brought on the same scale. This is what standardization ensures. Generally, in standardization, we center and scale our predictors, i.e.,</p>
+<ul>
+<li><strong>Center: </strong>In this step, we subtract the mean of a predictor variable from each respective observation of the same variable. This ensures that mean  of resultant predictor variable is zero. Hence, our predictor variable gets centered to 0 (zero)</li>
+<li><strong>Scale:</strong> In this step, we divide each predictor observation by the standard deviation of the predictor variable. This ensures that the standard deviation of resultant predictor observation become 1.</li>
+</ul>
+<p>Therefore, with standardization, all of our predictors have 0 mean and standard deviation of 1. All right, now all the predictors are on the same scale and we can apply any of your favourite machine learning algorithms. After standardization, we should check for <em>collinearity</em> - is there any correlation between predictor variables? If there exists correlation, that means both of your predictors are explaining the same thing. In other words, if the two predictors are correlated then one variable over the other is not explaining anything extra of the response variable.</p>
+<p>With this, a simple question arises, if any predictor is not explaining anything extra about a response variable over the other predictor, then why should we include extra predictor. Using<em> correlated</em> predictors unnecessarily makes our model complex and wastes extra computing cycles. Therefore, It is always encouraged to identify such correlated predictors and remove one of the predictors from the pair. A simple algorithm used for removing highly correlative predictors is mentioned in book "Applied Predictive Modelling" as</p>
+<ol>
+<li>Calculate the correlation matrix of the predictors.</li>
+<li>Determine the two predictors associated with the largest absolute pairwise<br />
+correlation (call them predictors A and B).</li>
+<li>Determine the average correlation between A and the other variables.Do the same for predictor B.</li>
+<li>If A has a larger average correlation, remove it; otherwise, remove predictor B.</li>
+<li>Repeat Steps 2–4 until no absolute correlations are above the threshold.</li>
+</ol>
+<div class="page" title="Page 42"></div>
+<p>Another simple way is to draw scatter plot and see if you can spot any linearity effect between any of two variables. In R, pairs() command is the best to find the collinearity effect.</p>
+<h1>Reference:</h1>
+<ol>
+<li>Book - Applied Predictive Modelling by Max Kuhn</li>
+<li>Book - An Intro. to Statistical learning by Gareth James et al.</li>
+</ol>
+<p>&nbsp;</p>

@@ -1,0 +1,32 @@
+---
+layout: post
+title: Heteroscedasticity (Non-Constant variance)
+date: 2016-05-06 06:40:13.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Notes
+tags:
+- feature transformations
+- Heteroscedasticity
+- regression
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '22529282211'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<p>In linear regression, It is assumed that the variance of error terms is constant. Technically, this is known as Homoscedasticity (or same variance). In simple language, with the inclusion of new predictor observations the variance of error terms should not change as against to the previous predictor observations. For example, if we say there is a correlation between the income and shopping done by a person, then it is assumed that people with lower-income will do less shopping and with higher income will do more shopping. The intuition says that the  variance of error terms (difference between actual vs. predicted shopping)  should remain constant, but what if we find that people with higher income do less or moderate type shopping. This type of situation results in variable variance in the error terms, technically known as Heteroscedasticity.  In the dataset, Heteroscedasiticity is identified by plotting residuals with respect to response variable. Presence of funnel shape confirms heteroscedasticity. This can be removed by introducing transformations.  Figure on the left plot shows the presence of funnel shape ( i.e., Heteroscedasticity). On transforming, the response variable (Y) through log transformation we obtain right plot in the below figure. This shows that tranformations of either predictor or response variable removes heteroscedasticity.<img class="alignnone size-full wp-image-165" src="{{ site.baseurl }}/assets/screen-shot-2016-05-06-at-11-52-07.png" alt="Screen Shot 2016-05-06 at 11.52.07.png" width="1358" height="666" />  Note: Figure taken from book - An Intro. to Statistical Learning by James et al.</p>
+<p><strong>References</strong></p>
+<ol>
+<li>http://www.statisticssolutions.com/homoscedasticity/</li>
+<li>Book - An Introduction to Statistical Learning by James et al.</li>
+</ol>

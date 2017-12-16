@@ -1,0 +1,53 @@
+---
+layout: post
+title: R scripts to handle dirty data
+date: 2016-11-13 19:25:39.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- R
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '28867258878'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<p><strong>Filling missing values with NA: </strong> I assume that <em>org_xts</em> in the following code represent a given time-series object in which we need to handle missing readings</p>
+<p>[code lang="css"]&lt;/pre&gt;<br />
+#org_dfs represents object with missing readings<br />
+timerange = seq(start(org_xts),end(org_xts), by = &quot;hour&quot;)# assuming original object is hourly sampled<br />
+temp = xts(rep(NA,length(timerange)),timerange)<br />
+complete_xts = merge(org_xts,temp)[,1]<br />
+&lt;pre&gt;[/code]</p>
+<p>&nbsp;</p>
+<p><strong>Removing Duplicate values:</strong> Here, we will identify duplicate entries on the basis of duplicate time-stamps. </p>
+<p>[code language="lang=&quot;css"]&lt;/pre&gt;<br />
+# dummy time-series data<br />
+timerange = seq(start(org_xts),end(org_xts), by = &quot;hour&quot;)# assuming original object is hourly sampled<br />
+temp = xts(rep(NA,length(timerange)),timerange)<br />
+# identify indexes of duplicate entries<br />
+ duplicate_enties = which(duplicated(index(temp)))<br />
+# data without duplicates<br />
+ new_temp = temp[-duplicate_entries,]<br />
+&lt;pre&gt;[/code]</p>
+<p>&nbsp;</p>
+<p><strong>Resample Higher frequency data  to lower frequency:</strong> In this function, we will resample the high-frequency data to lower frequency data. Note  that there are some tweaks done according to timezone, currently set to "Asia/Kolkata"  </p>
+<p>[code language="lang=&quot;css"]&lt;/pre&gt;<br />
+resample_data &lt;- function(xts_datap,xminutes) {<br />
+library(xts)<br />
+#xts_datap: Input timeseries xts data, xminutes: required lower frueqeuncy rate<br />
+ds_data = period.apply(xts_datap,INDEX = endpoints(index(xts_datap)-3600*0.5, on = &quot;minutes&quot;, k = xminutes ), FUN= mean) # subtracting half hour to align hours<br />
+# align data to nearest time boundary<br />
+align_data = align.time(ds_data,xminutes*60-3600*0.5) # aligning to x minutes<br />
+return(align_data)<br />
+}<br />
+&lt;pre&gt;[/code]</p>

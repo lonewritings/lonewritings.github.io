@@ -1,0 +1,44 @@
+---
+layout: post
+title: Difference between Dataset, Model, Graph, etc. in Jena
+date: 2015-06-05 22:02:20.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Semantics
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '22766921574'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<div>
+<p>Note: I have taken this answer from <a href="http://answers.semanticweb.com/questions/3186/model-vs-datasource-vs-dataset-vs-graph-vs-datasetgraph">this </a>link. I hope to add some other relevant concepts to it.</p>
+</div>
+<div></div>
+<div>
+<ul>
+<li>A DataSet is a collection of models (one being the Default Model, any others being Named Models) that you expect will have new triples added to it over time. You can read and write on DataSets.</li>
+<li>A Model is a collection of statements - this is what you typically aim your SPARQL queries at. If you SPARQL a Dataset and don't use a 'FROM NAMED' clause, you're querying the Default Model.</li>
+<li>A Graph is a collection of triples. Every Model can be turned into a Graph, to provide a somewhat closer representation of the RDF, OWL, and SPARQL standards.</li>
+<li>A DatasetGraph is a container for Graphs, that provides the infrastructure for Default and Named Graphs.</li>
+<li>Some people prefer the DatasetGraph / Graph representation, which gives you a different suite of methods to call. It's really a matter of preference - both the Model and Graph approaches will get the job done, though it seems to me that the Model Model approach is a bit higher-level and user-friendly.</li>
+<li>A typical workflow for data analysis would have you identify a DataSource, like DBpedia. You'd define a bunch of different Datasets by querying DBpedia with CONSTRUCT statements. Now, you have static snapshots that you can use for your analysis work. In many Datasets, you'll just have one model, the default model. However, sometimes you want the added complexity of Named Models, in which case your Datasets will have a few Models in each.</li>
+<li>If you're doing analysis, you usually want to set up DataSources (as proxies) to each repository you want to define your Datasets with. You'll be in charge of persisting your Datasets, and can determine when to refresh them with new data by requiring your sources (if you even want to refresh your data). The persistence of Models, then, will come naturally as a result of the Dataset persistence.</li>
+</ul>
+<p>Graphically, some of the above concepts can be depicted in the below diagram as:</p>
+</div>
+<p class="separator"><a href="https://loneharoon.files.wordpress.com/2015/06/a3e89-jenalayeredstructure.jpg"><img src="{{ site.baseurl }}/assets/a3e89-jenalayeredstructure.jpg?w=300" width="640" height="312" border="0" /></a></p>
+<div>
+<p>Other relevant stuff can be found at the following links:</p>
+<p>1. Criag Trim: <a href="https://www.ibm.com/developerworks/community/blogs/nlp/entry/an_introduction_to_the_jena_api?lang=en"> Working with DataSets using Jena</a></p>
+</div>

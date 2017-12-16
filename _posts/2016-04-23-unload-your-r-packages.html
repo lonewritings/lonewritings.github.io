@@ -1,0 +1,39 @@
+---
+layout: post
+title: Unload your R packages
+date: 2016-04-23 04:27:31.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Notes
+- R
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '22072275757'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<p>Very few times, we want to unload either some of the selected packages or all of the packages. Although there is a simple way around it,  i.e., to restart the R session, but this gives a lot of pain by re-running each functions on reload. While dealing with the same situation, I found a simple three line code  from Stack Overflow <a href="http://stackoverflow.com/a/7505716/3317829">link</a>. Here is the code</p>
+<p>[code language="CSS"]<br />
+pkgs = names(sessionInfo()$otherPkgs) # finds all the loaded pkgs<br />
+pkgs_namspace = paste('package:',pkgs,sep = &amp;quot;&amp;quot;)<br />
+# please find ?detach for meanings of option used<br />
+lapply(pkgs_namespace,detach, character.only=TRUE,unload=TRUE,force=TRUE)<br />
+[/code]</p>
+<p>To remove a specific package say xyz, we use</p>
+<p>[code language="CSS"]<br />
+detach(&quot;package:xyz&quot;) # please use ?detach for options<br />
+[/code]</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Please excuse, if any typos found</p>
+<p>&nbsp;</p>

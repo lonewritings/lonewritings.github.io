@@ -1,0 +1,39 @@
+---
+layout: post
+title: Local Outlier Factor
+date: 2016-07-29 16:41:03.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Notes
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '25270596343'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<p>Local outlier Factor (LoF) is another density based approach to identify outliers in a dataset. The LoF is applicable to identify outliers in a dataset, which has a mixture of data distributions.</p>
+<p>[caption id="attachment_912" align="aligncenter" width="318"]<img class="aligncenter  wp-image-912" src="{{ site.baseurl }}/assets/lof.png" alt="lof" width="318" height="248" /> Figure showing the dense and sparse distribution of points [Source: Google images][/caption]The above figure shows two different distributions, a dense cluster of points and a sparse distribution of points.  In such datasets, for each specific distribution within a dataset, we should perform outlier detection locally, i.e., points within one distribution should not affect outlier detection in another cluster. The LoF algorithm follows the same intuition and calculates anomaly score for  each point within a distribution as:</p>
+<ol>
+<li>For each data point $latex X $, let $latex D^k(X) $ represent distance of point $latex X $ to its $latex k^{th} $ neighbor, and $latex L_{k}(X) $ represent set of points within $latex D^k(X) $</li>
+<li>Compute reachability distance for each data point, $latex X $  as                                     $latex R_{k}(X, Y) = max(dist(X,Y), D^k(Y)) $</li>
+<li>Compute Average reachability distance $latex AR_{k}(X)$ of data point $latex X$ as                         $latex AR_{k}(X) = MEAN_{Y \in L_{k}(X)} R_{k}(X, Y) $</li>
+<li>In the final step, LOF score for each point, $latex X $ is calculated as:                                                            $latex LOF_{k}(X) = MEAN_{Y \in L_{k}(X)} \frac{AR_{k}(X)}{AR_{k}(Y)} $</li>
+</ol>
+<p>To find the best value of $latex k $, it is always good to follow ensemble approach, i.e., use a range of $latex k $ values to calculate LOF scores and then use a specific method to combine the outlier scores.</p>
+<p>&nbsp;</p>
+<p>References:</p>
+<ol>
+<li>Book: Outlier Analysis by Charu Aggarwal</li>
+<li> Wikipedia</li>
+<li>Google Images</li>
+</ol>

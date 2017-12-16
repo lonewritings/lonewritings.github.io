@@ -1,0 +1,53 @@
+---
+layout: post
+title: Setting Semantic Softwares on MAC OS X
+date: 2015-04-12 09:04:51.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Semantics
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '22766974589'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<p>In this post, I will be adding procedures required to set up necessary semantic softwares on Mac OS 10.10.3:</p>
+<ul>
+<li><b>Setting OpenLink Virtuoso</b>: For our purpose we use virtuoso as a triple store. Although, there are number of triple stores available but from my limited literature survey I found Virtuosos as fast, scalable and easy to set up. Steps involved from getting a copy of Virtuoso to its startup on Mac are as:</li>
+</ul>
+<ol>
+<ol>
+<li>Download a fresh copy of Virtuoso from <a href="http://sourceforge.net/projects/virtuoso/?source=typ_redirect">link</a></li>
+<li>Unzip the copy at some suitable place</li>
+<li>Please read "README" file in the unzipped folder and ensure that you have all dependencies installed</li>
+<li>In this step we are going to change the default stack size, so in the same directory open <i>binsrc/virtuoso/viunix.c</i> in some text editor. In <i>viunix.c,</i> search for <i>thread_initial</i> and change its default size from 60000 to 80000. Save the file and exit</li>
+<li>Now open the "INSTALL" file in same unzipped folder. Read it carefully and follow the steps sequentially, <i>i.e</i>,  i) ./configure,  ii)make, iii) make check, and  iv) sudo make install</li>
+<li>Add location of virtuoso to PATH variable. There are various ways to do this, but here I will explain one of possible ways. Open<i>.</i> <i>bash_profile</i> file and add the following line to it "<i>export PATH =$PATH:/usr/local/virtuoso-opensource/bin/</i>". Save the file and exit.</li>
+<li>Once all of the above steps are done successfully, now it is to check whether Virtuoso is installed successfully. Therefore, move to location of <i>virtuoso.ini </i>file. This file is mostly located at <span style="font-family:'helvetica neue', arial, helvetica, sans-serif;"><i>usr/local/virtuoso-opensource/var/lib/virtuoso/db</i></span></li>
+<li><span style="font-family:'helvetica neue', arial, helvetica, sans-serif;"><span>Start server with command: sudo virtuoso-t -f &amp;. On my system, server starts with sudo virtuoso-t -f</span></span></li>
+<li><span style="font-family:'helvetica neue', arial, helvetica, sans-serif;"><span>Open <a href="http://localhost:8890/conductor">http://localhost:8890/conductor</a> in web browser. </span></span></li>
+</ol>
+</ol>
+<p><span style="font-family:'helvetica neue', arial, helvetica, sans-serif;"><span>NOTE: These steps are also available at <a href="https://tanyagrayjones.wordpress.com/2014/02/11/how-to-install-openlink-virtuoso-on-a-mac/">link</a>, but she has missed step # 4. This is the only reason I created a separate post for this.</span></span></p>
+<div>
+<ul>
+<li><span style="font-family:'helvetica neue', arial, helvetica, sans-serif;"><span><b>Setting Jena Framework</b>: This is a java based framework. This is mostly used framework within semantic community, suitable for playing with semantic technologies. To setup jena on your system follow these steps:</span></span>
+<ol>
+<li><span style="font-family:'helvetica neue', arial, helvetica, sans-serif;"><span>Download a fresh copy of apache-jean from apache download centre located at </span><a href="https://jena.apache.org/download/index.cgi">link</a></span></li>
+<li>Please follow the steps of integration of apache-jena with Eclipse at <a href="http://www.iandickinson.me.uk/articles/jena-eclipse-helloworld/">link</a></li>
+<li>To get a clear understanding of how ontologies/models are handled in Jena look at the documents present at <a href="https://jena.apache.org/documentation/ontology/">link</a></li>
+</ol>
+</li>
+<li><b>Creating Ontologies</b>: Ontologies serve as one of the basic component in semantic technologies. Ontologies define the basic schema/structure/relationship of a particular domain. There are various tools available for building ontologies. I am using Protege, developed at Stanford university. Download a copy of it for your system, and give it a try by following some tutorials available online.</li>
+</ul>
+</div>

@@ -1,0 +1,50 @@
+---
+layout: post
+title: Insert edited pdf image in Latex document
+date: 2016-01-13 12:10:51.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Miscellaneous
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '22767122985'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<p>Sometimes we need to edit the PDF images. Although we have different options to do this, but here I am considering using the preview app installed in the Mac. Mostly, after editing in preview, we face two issues:</p>
+<ol>
+<li> The edited portion in preview app is not shown in the final pdf document generated via Latex</li>
+<li>On saving the edited image in preview, preview adds extra spaces to final image</li>
+</ol>
+<div>
+<p><b>Solve First Issue:</b></p>
+</div>
+<div>
+<p>After editing the image in preview,  save image  using<span style="color:#222426;font-family:'lucida grande', 'lucida sans unicode', 'lucida sans', tahoma, sans-serif;"> </span>Export as PDF… option from the File menu.</p>
+</div>
+<div>
+<p>Full details can be found at this <a href="http://tex.stackexchange.com/a/218818/88745">link</a>.</p>
+</div>
+<div></div>
+<div>
+<p><b>Solve Second Issue</b>:</p>
+</div>
+<div>
+<p>This issue is solved within the Latex itself by using the trim option. For example,</p>
+</div>
+<div>
+<p><i>\includegraphics[trim=left bottom right top, clip]{abc.pdf} </i></p>
+</div>
+<div>
+<p>Full details about this can be found at  this <a href="http://texblog.org/2012/02/23/crop-figures-with-includegraphics/">link</a></p>
+</div>

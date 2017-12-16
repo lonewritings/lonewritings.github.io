@@ -1,0 +1,53 @@
+---
+layout: post
+title: Illustration of k value effect on outlier score
+date: 2016-08-22 19:11:19.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Notes
+- R
+tags:
+- lof
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '26033535165'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<p>Continuing with the <a href="http://wp.me/p454Mj-j6" target="_blank">previous post</a>, here, I will illustrate how outlier scores vary while considering different <em>k</em> values. The context of below figure is already explained in my previous post.</p>
+<p><img class=" size-full wp-image-1199 aligncenter" src="{{ site.baseurl }}/assets/screen-shot-2016-08-22-at-11-02-08.png" alt="Screen Shot 2016-08-22 at 11.02.08" width="587" height="526" /></p>
+<p>After running the LOF algorithm with following R code lines</p>
+<p>[code lang="css"]</p>
+<p>library(Rlof) # for applying local outlier factor<br />
+library(HighDimOut) # for normalization of lof scores<br />
+set.seed(200)<br />
+df &lt;- data.frame(x = c( 5, rnorm(2,20,1), rnorm(3,30,1), rnorm(5,40,1), rnorm(9,10,1), rnorm(10,37,1)))<br />
+df$y &lt;- c(38, rnorm(2,30,1), rnorm(3,10,1), rnorm(5,40,1), rnorm(9,20,1), rnorm(10,25,1))<br />
+#pdf(&quot;understandK.pdf&quot;, width = 6, height = 6)<br />
+plot(df$x, df$y, type = &quot;p&quot;,  ylim = c(min(df$y), max(df$y) + 5), xlab = &quot;x&quot;, ylab = &quot;y&quot;)<br />
+text(df$x, df$y, pos = 3, labels = 1:nrow(df), cex = 0.7)<br />
+dev.off()<br />
+lofResults &lt;- lof(df, c(2:10), cores = 2)<br />
+apply(lofResults, 2, function(x) Func.trans(x,method = &quot;FBOD&quot;))</p>
+<p>[/code]</p>
+<p>We get the outlier scores for 30 days on a range of <em>k</em> = [2:10] as follows:</p>
+<p><img class=" size-full wp-image-1224 aligncenter" src="{{ site.baseurl }}/assets/screen-shot-2016-08-22-at-11-11-00.png" alt="Screen Shot 2016-08-22 at 11.11.00" width="430" height="535" /></p>
+<p>Before explaining results further, I present the distance matrix as below, where each entry shows the distance between days <em>X</em> and <em>Y</em>. Here, <em>X</em> represents row entry and <em>Y</em> represents column entry.</p>
+<p><img class=" size-full wp-image-1223 aligncenter" src="{{ site.baseurl }}/assets/screen-shot-2016-08-22-at-11-22-44.png" alt="Screen Shot 2016-08-22 at 11.22.44" width="1081" height="534" /></p>
+<p>Let us understand how outlier scores get assigned to day 1 on different <em>k's</em> in the range of 2:10. The neighbours of point 1 in terms of increasing distance are:</p>
+<p><img class=" size-medium wp-image-1315 aligncenter" src="{{ site.baseurl }}/assets/screen-shot-2016-08-22-at-16-50-30.png?w=600" alt="Screen Shot 2016-08-22 at 16.50.30" width="300" height="26" /></p>
+<p>Here the first row represents neighbour and the second row represents the distance between point 1 and the corresponding point. While noticing the outlier values of point 1, we find till <em>k = 8</em>, outlier score of point 1 are very high (near to 1). The reason for this is that the density of  <em>k</em> neighbours of point 1 till <em>k = 8</em> is <strong>high</strong> as compared to point 1. This results in higher outlier score to point 1. But, when we set <em>k = 9</em>, outlier score of point 1 drops to 0. Let us dig it deep further. The <em>8th</em> and <em>9th</em> neighbours of point 1 are points 18 and 17 respectively. The neighbours of point 18 in increasing distance are:</p>
+<p><img class="aligncenter size-medium wp-image-1331" src="{{ site.baseurl }}/assets/screen-shot-2016-08-22-at-17-02-37.png?w=600" alt="Screen Shot 2016-08-22 at 17.02.37" width="300" height="28" /></p>
+<p>and the neighbours of point 17 are:</p>
+<p><img class="aligncenter size-medium wp-image-1333" src="{{ site.baseurl }}/assets/screen-shot-2016-08-22-at-17-03-13.png?w=600" alt="Screen Shot 2016-08-22 at 17.03.13" width="300" height="27" /></p>
+<p>Observe carefully, that <em>8th</em> neighbour of point 1 is point 18, and the <em>8th</em> neighbour of point 18 is point 19. While checking the neighbours of point 18 we find that all of its 8 neighbours are nearby (in cluster D). This results in higher density for all k neighbours of point 1 till <em>8th</em> neighbour as all these points are densest as compared to point 1, and hence point 1 with lesser density gets high anomaly score. On the other hand, <em>9th</em> neighbour of point 1 is point 17 that has <em>9th</em> neighbour as point 3. On further checking, we find that for all the points which are in cluster D now find their 9th neighbour  either in cluster A or cluster B. This essentially decreases the density of all the considered neighbours of point 1. As a result, now all the points including point 1 and its 9 neighbours have densities in the similar range and hence point 1 gets low outlier score.</p>
+<p>I believe that this small example explains how outlier scores vary with different k's<em>.</em> Interested readers can use the provided R code to understand this example further.</p>

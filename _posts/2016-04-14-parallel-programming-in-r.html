@@ -1,0 +1,60 @@
+---
+layout: post
+title: Parallel Programming In R
+date: 2016-04-14 14:35:02.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Notes
+- R
+tags:
+- parallel
+- Parallel-processing
+meta:
+  _thumbnail_id: '43'
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '21781735546'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<p>In R, often times we get stuck by the limited processing power of our machines.  This can be easily solved by using parallel processing. In R, there are various libraries which enable parallel processing, but here I will use only parallel library.</p>
+<p><strong>Example: </strong>Here, I will explain a simple scenario of parallel package usage. Consider I have a data frame with thousand rows and two columns. Now, I need to compute the sum of each of 100 subsequent rows, i.e, I want to compute sums of rows c(1:100), c(101:200) ,..., c(901:1000) in parallel. This means I won't compute sums in serial manner.</p>
+<p>&nbsp;</p>
+<p>[code language="css"]<br />
+library(parallel)<br />
+# Create a dummy data frame with 1000 rows and two columns<br />
+set.seed(100688)<br />
+df = data.frame(x=rnorm(1000),y=rnorm(1000))<br />
+no_cores = detectCores()-1# No. of cores in your system<br />
+cl = makeCluster(no_cores) # Make cluster<br />
+# Generate list of indexes for row summation of data frame<br />
+indexs = seq(from=1,to=1000, by =100)<br />
+clusterExport(cl,'df') # pass parameters on-fly to the threads<br />
+start_time = Sys.time() # start time of parallel computation<br />
+parallel_result = parLapply(cl,indexs,sumfunc)<br />
+total_time = Sys.time()-start_time # total time taken for computation<br />
+cat ('Total_parallel_time_taken',total_time)<br />
+stopCluster(cl)</p>
+<p>sumfunc = function(ind) {<br />
+# Computs row sum of 100 rows starting with the index, ind<br />
+rowsum = colSums(df[ind:ind+99,])<br />
+return (rowsum)<br />
+}</p>
+<p># More than one parameter can be sent in the form of a list as<br />
+clusterExport(cl,list('xx','yy','zz') # parameters sent on-fly<br />
+[/code]</p>
+<p><strong>Other Related Blogs:<br />
+</strong></p>
+<ol>
+<li><a href="http://gforge.se/2015/02/how-to-go-parallel-in-r-basics-tips/" target="_blank">How-to go parallel in R – basics + tips</a></li>
+<li><a href="https://beckmw.wordpress.com/2014/01/21/a-brief-foray-into-parallel-processing-with-r/" target="_blank">A brief foray into parallel processing with R</a></li>
+<li><a href="http://www.joyofdata.de/blog/parallel-computing-r-windows-using-dosnow-foreach/" target="_blank">Parallel computing in R on Windows and Linux using doSNOW and foreach</a></li>
+</ol>

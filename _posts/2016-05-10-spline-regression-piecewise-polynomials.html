@@ -1,0 +1,53 @@
+---
+layout: post
+title: Spline Regression [Piecewise polynomials]
+date: 2016-05-10 13:40:44.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Notes
+tags:
+- Spline Regression
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '22668486907'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<p>Mostly, we have two ways to fit a regression line to our data:</p>
+<ol>
+<li>Use single Linear/Non-Linear regression line to fit data</li>
+<li>Fit more than one linear/non-linear regression lines to different parts of data. This is known as <strong>spline regression. </strong>We go for this because polynomials are not flexible enough to model all functions.</li>
+</ol>
+<p>First case is straightforward. In the second case, more than one linear/non-linear piecewise polynomial is fitted to data. These lines are connected at points known as "knots". This has certainly advantage as instead of fitting a single higher order polynomial to represent non-linearity in data, we use different low-order polynomials. This results in simplicity and also obeys the principle of parsimony (Occam's Razor), which is [1]</p>
+<ol>
+<li>models should have as few parameters as possible</li>
+<li>linear models should be preferred to non-linear models</li>
+<li>experiments relying on few assumptions should be preferred to those relying on many</li>
+<li>models should be pared down until they are minimal adequate</li>
+<li>simple explanations should be preferred to complex explanations
+<div class="page" title="Page 24"></div>
+</li>
+</ol>
+<p>The following figure [2] shows how two splines are added to data in different scenarios.</p>
+<p><img class="  wp-image-261 aligncenter" src="{{ site.baseurl }}/assets/screen-shot-2016-05-10-at-19-04-53.png" alt="Screen Shot 2016-05-10 at 19.04.53.png" width="498" height="447" /></p>
+<p>The only issue with this regression is  Knot selection, but with improved libraries this issue is handled easily. Some common terms include:</p>
+<ol>
+<li>Linear splines - Piecewise linear polynomials continous at knots. In cubic spline, it is piecewise cubic polynomils</li>
+<li>Natural spline -  According to John, it is fancier version of cubic splines. It adds constraints at the boundary which helps in extrapolating function linearly beyond the boundary knots.</li>
+</ol>
+<p>With sayings of John, polynomials are more easy to think, but splines are much better behaved and more local.</p>
+<p>References:</p>
+<ol>
+<li> Book -  Statistics An introduction using R by Michael J. Crawley</li>
+<li> Book - An Intro to Statistical Learning by Gareth James et. al</li>
+<li>John, i.e., Trevor John Hastie, Professor at Stanford</li>
+</ol>

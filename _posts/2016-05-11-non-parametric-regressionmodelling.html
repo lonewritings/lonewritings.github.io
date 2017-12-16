@@ -1,0 +1,68 @@
+---
+layout: post
+title: Non-parametric Regression/Modelling
+date: 2016-05-11 09:40:39.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Notes
+tags:
+- kernel regression
+- non-paremetric regression
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '22697693243'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<p>In parametric regression/modelling we set different parameters to model our data. Say if w know the underlying data distribution is normal then we can set different combination of mean and standard-deviations until the model will reflect underlying data perfectly. All right! But how will you model the data if you don't know the underlying data distribution. For example, in the below figure, underlying data distribution is uniform but on assuming that data is normal we got the estimate as shown, which is normal. This shows that we cannot rely on such parametric models if are not sure of underlying data distribution.<img class="  wp-image-317 aligncenter" src="{{ site.baseurl }}/assets/screen-shot-2016-05-11-at-14-40-13.png" alt="Screen Shot 2016-05-11 at 14.40.13" width="448" height="289" /></p>
+<p><strong>Non-Parametric Regression/Modelling or Kernel Density Estimation</strong>: In this, we use underlying data and some kernel function to model the data. The main idea is that at the point of interest we observe the neighboring points and  estimate value as a function of there positions/values. The neighboring points get weights according to kernel function used. The most common kernel function used is Gaussian kernel. Please find remaining  kernels used at <a href="https://en.wikipedia.org/wiki/Kernel_(statistics)">this </a>wiki link. An important tuning parameter in this technique is the width of the neighboring region considered for estimation, commonly known as bandwidth. This parameter controls the smoothness of estimation. Lower values results in more tightness but also include some noise, while as higher values result in more smoothness. But computing optimal value of bandwidth is not our concern as there exist number of approaches which calculate this value. The effect of bandwidth using  Gaussian kernel is shown in below figure.</p>
+<p><img class="alignnone size-full wp-image-337" src="{{ site.baseurl }}/assets/screen-shot-2016-05-11-at-14-52-59.png?w=1432" alt="Screen Shot 2016-05-11 at 14.52.59.png" width="716" height="237" /></p>
+<p>This shows that automatic selection of bandwidth parameter is good enough to represent to underlying data distribution.</p>
+<p><strong>R code</strong></p>
+<p>[code language="CSS"]<br />
+set.seed(1988)<br />
+x = runif(700,min=0,max=1)<br />
+x.test = seq(-2,5,by=0.01)<br />
+x.fit = dnorm(x.test,mean(x),sd(x))<br />
+x.true = dunif(x.test,min=0,max=1)<br />
+bias = x.fit-x.true<br />
+#plot(bias~x.test)<br />
+plot(x.fit~x.test,t=&quot;l&quot;, ylim= c(0,1.4),lty=2)<br />
+lines(x.true~x.test,lty=1)<br />
+legend(&quot;topleft&quot;,legend = c(&quot;Estimate&quot;,&quot;Actual&quot;), lty = c(2,1))<br />
+###########kernel density plots######<br />
+ set.seed(1988)<br />
+ ser = seq(-3,5, by=0.01)<br />
+ x = c(rnorm(500,0,1),rnorm(500,3,1)) # mixture distributions<br />
+ x.true = 0.5*dnorm(ser,0,1) + 0.5*dnorm(ser,3,1)<br />
+ plot(x.true~ser,t=&quot;l&quot;)<br />
+par(mfrow=c(1,4))<br />
+# Guassian Kernel<br />
+ plot(density(x,bw=0.1),ylim=c(0,0.3),lty=2, main=&quot;Gaussian Kernel, bw=0.1&quot;)<br />
+ lines(x.true~ser,lty=1)<br />
+ legend(&quot;topleft&quot;,legend = c(&quot;Actual&quot;,&quot;Estimated&quot;),lty=c(1,2))</p>
+<p> plot(density(x,bw=0.3),ylim=c(0,0.3),lty=2, main=&quot;Gaussian Kernel, bw=0.3&quot;)<br />
+ lines(x.true~ser,lty=1)<br />
+ legend(&quot;topleft&quot;,legend = c(&quot;Actual&quot;,&quot;Estimated&quot;),lty=c(1,2))</p>
+<p> plot(density(x,bw=0.8),ylim=c(0,0.3),lty=2, main=&quot;Gaussian Kernel, bw=0.8&quot;)<br />
+ lines(x.true~ser,lty=1)<br />
+ legend(&quot;topleft&quot;,legend = c(&quot;Actual&quot;,&quot;Estimated&quot;),lty=c(1,2))</p>
+<p> plot(density(x),ylim=c(0,0.3),lty=2, main=&quot;Gaussian Kernel, bw=automatic&quot;)<br />
+ lines(x.true~ser,lty=1)<br />
+ legend(&quot;topleft&quot;,legend = c(&quot;Actual&quot;,&quot;Estimated&quot;),lty=c(1,2))</p>
+<p>[/code]</p>
+<p>References:</p>
+<ol>
+<li>https://www.youtube.com/watch?v=QSNN0no4dSI</li>
+<li>https://en.wikipedia.org/wiki/Kernel_(statistics)</li>
+</ol>
+<p>&nbsp;</p>

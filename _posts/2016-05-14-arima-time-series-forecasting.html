@@ -1,0 +1,41 @@
+---
+layout: post
+title: ARIMA, Time-Series Forecasting
+date: 2016-05-14 13:00:09.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Notes
+tags:
+- ARIMA
+- forecasting
+- time-series
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '22796687385'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<p>We use ARIMA (Auto-Regressive Integrated Moving Average) to model time-series data for forecasting. ARIMA uses three basic concepts:</p>
+<ol>
+<li><strong>Auto-Regressive</strong>: The term itself points to regression, i.e., it predicts new value using regression over the previous lagged values of the same series. The lags used define its order</li>
+<li><strong>Integrated</strong>: This concept is used to remove trend (continuously increasing/decreasing time-series) from the time series. This is done by differencing consecutive values of time-series.</li>
+<li><strong>Moving Average</strong>: In this we perform regression by using the error terms at various lags. The lags used define its order</li>
+</ol>
+<p>ARIMA works only on stationary data. If the input data is not stationary (detected via automated tests, i.e, different unit tests like famous Dickey-Fuller test), then stationary is achieved via differencing approach. The ARIMA forecasting equation for a stationary time-series is regression type equation in which predictors consist of previous response values at different lags. This also includes forecast errors at different lags.</p>
+<p><span style="line-height:1.7;">$latex Predictor (y)\quad =\quad C\quad +\quad Weighted\quad sum\quad of\quad previous\quad y\quad and\quad previous\quad errors\quad at\quad various\quad lags &amp;s=4$</span></p>
+<p>Auto-regressive models and exponential smoothing are all special cases of ARIMA models</p>
+<p>&nbsp;</p>
+<p>References:</p>
+<ol>
+<li>http://ucanalytics.com/blogs/arima-models-manufacturing-case-study-example-part-3/</li>
+<li>http://people.duke.edu/~rnau/411arim.htm</li>
+</ol>

@@ -1,0 +1,39 @@
+---
+layout: post
+title: Enable display in Raspberry Pi
+date: 2017-04-28 20:02:59.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- IoT
+tags:
+- Raspberry
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '4491193347'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<p>Do you want to connect your Raspberry Pi to an external display via HDMI? If yes, follow these simple steps:</p>
+<ol>
+<li>Install operating system on memory card</li>
+<li>Open config.txt in the memory card</li>
+<li>Search following lines and uncomment these lines:</li>
+<li>
+<pre>hdmi_safe=1</pre>
+</li>
+<li>
+<pre>hdmi_force_hotplug=1</pre>
+</li>
+<li>Now save the file and insert memory card in Raspberry Pi Module</li>
+<li>Insert one end of HDMI cable in the Raspberry Pi and other side in the monitor.</li>
+<li>Now you should be able to get GUI of Raspberry on the monitor.</li>
+</ol>

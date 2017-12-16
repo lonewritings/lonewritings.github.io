@@ -1,0 +1,52 @@
+---
+layout: post
+title: Graph Databases and Relational Databases
+date: 2015-02-25 20:00:05.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Semantics
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '22767030750'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<div>
+<p><span>Relational database (RD) stores data in the form of tables, whereas Graph database (GD) store data in the form of graphs. Triple stores (TS) are included in Graph Databases.  More specifically, TS are a type of NoSQL GD. However, TS differ from NoSQL Graph Databases in several ways. Triple stores have been implemented to store RDF, which is a special kind of graph: a directed labelled graph.  NoSQL Graph Databases can store different types of graphs: unlabeled graphs, undirected graphs, weighted graphs, hypergraphs, etc [<a href="http://www.dataversity.net/introduction-to-triplestores/">Diversity</a>]. Major points of difference between two include  GD and RD are [<a href="http://www.odbms.org/blog/2013/04/graphs-vs-sql-interview-with-michael-blaha/">1</a>]:</span></p>
+</div>
+<div></div>
+<ul>
+<li><span>GD's are occurrence based while as RD's are schema based. This means for conventional applications where before hand we know the schema of stored data we should use RD while as for opposite scenarios we should use GD. GD gives us the flexibility of adding new data and relationships as encountered. Therefore, in RD we have a proper schema/structure of our database before hand, while as in GD no prior structure is fixed. </span></li>
+<li><span>Navigation: In GD you start with a root object and then traverse to related objects while as in RD navigation happens through <i>Joins</i>. Navigation via joins is always difficult.</span></li>
+<li><span>RD are not good at recursion naturally, but this support is provided with some extensions. In contrast to this, GD are doing great in handling recursion. This is the beauty of graphs.</span></li>
+</ul>
+<div>
+<p><span>There are many differences, but at the end it boils down to your application. I think above first point should suffice your main question. Performance issues, always help you to decide whether to go for RD or GD. Some of the GD's include: Neo4j, AllegroGraph, StarDog, OpenLink Virtuoso.                                    </span></p>
+</div>
+<div>
+<p><span>    Some important points in regard to databases include:</span></p>
+</div>
+<div></div>
+<ul>
+<li><span>Graphs can be implemented in a relational database using foreign keys, but it often needs link tables to model the complexities [<a href="http://neo4j.com/news/relational-database-graph-database/">2</a>]. A difficulty with implementing triple stores over SQL is that although triples may thus be stored, implementing efficient querying of a graph-based RDF model (e.g., mapping from <a href="http://en.wikipedia.org/wiki/SPARQL">SPARQL</a>) onto SQL queries is difficult [<a href="http://www.semantic-web.at/news/jeen-broekstra-x22-the-importance-of-sparql-can-not-be-overestimated-x22">Jean</a>]. Also, SPARQL, the standard query language used by triple stores, can require a lot of self joins, something RD's are not optimised for [<a href="http://stackoverflow.com/questions/9159168/triple-stores-vs-relational-databases">Michael</a>].</span></li>
+<li><span>Triple Stores, which are essentially GD but TS don't store data in the form of graphs. Different types of TS on basis of their implementation include [<a href="http://www.dataversity.net/introduction-to-triplestores/">Diversity</a>]: </span>
+<ul>
+<li><span>Native triple stores: Implemented from scratch. Efficiently store and access RDF data. These include: <a href="http://4store.org/">4Store</a>, <a href="http://www.franz.com/agraph/allegrograph/">AllegroGraph</a>, <a href="http://www.systap.com/bigdata.htm">BigData</a>, <a href="http://jena.apache.org/documentation/tdb/index.html">Jena TDB</a>, <a href="http://www.openrdf.org/">Sesame</a>, <a href="http://stardog.com/">Stardog</a>, <a href="http://www.ontotext.com/owlim">OWLIM</a> and <a href="http://www.yarcdata.com/products.html">uRiKa</a>. </span></li>
+<li><span>RDBMS-backed triplestores are built by adding an RDF specific layer to an existing RDBMS. These include: <a href="http://jena.apache.org/documentation/sdb/index.html">Jena SDB</a>, <a href="https://www.ibm.com/developerworks/mydeveloperworks/blogs/nlp/resource/DB2_NoSQLGraphStore.pdf">IBM DB2</a> and <a href="http://virtuoso.openlinksw.com/">Virtuoso</a>. </span></li>
+<li><span>NoSQL Triplestores are recently being investigated as possible storage managers for RDF. For example, <a href="http://code.google.com/p/cumulusrdf/">CumulusRDF</a> is built on top of Cassandra. The folks at <a href="http://seevl.net/">Seevl</a> have implemented a <a href="http://seevl.net/blog/2013/01/15/storing-and-querying-rdf-data-with-redis/">triplestore on top of Redis</a>. </span></li>
+</ul>
+</li>
+<li><span>Among GD's, RDF database systems are only standardised at the moment.  These are build upon W3C's Linked  Data technology stack [<a href="http://blog.datagraph.org/2010/04/rdf-nosql-diff">Arto</a>]. </span></li>
+</ul>
+<div></div>
+<div></div>

@@ -1,0 +1,46 @@
+---
+layout: post
+title: LaTeX for Complex Stuff
+date: 2016-08-03 18:52:01.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- latex
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '25429986118'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<p>In this post, I will keep updating solutions to common problems we face while preparing LaTeX manuscripts.</p>
+<p><strong>Customise the width of any cell in a table: </strong>First include package pbox. Then, cell contents of a table will go like this \pbox{5cm}{blah blabh}. Even the contents of cell can be forced to next line by using double backslash, i.e., \\</p>
+<p><strong>Customise width of entire table column</strong>: In this case, instead of mentioning l,c,r options of tabular environment for the said column, use p with width . For example \begin{tabular}{|r|c|p{4cm}} [<a href="http://wangpidong.blogspot.in/2011/05/latex-how-to-control-column-width-of.html" target="_blank" rel="noopener">Reference</a>]</p>
+<p><strong>Present table in landscape style</strong>  [<a href="http://tex.stackexchange.com/a/109922/88745">Ref</a>]: Add necessary packages and the syntax to show table in landscape mode is as</p>
+<pre><span class="s1">\usepackage{floats,lscape}</span>
+<span class="s1">\begin{landscape}</span>
+<span class="s1">\begin{table}</span>
+<span class="s1">…table stuff…</span>
+<span class="s1">\end{table}</span>
+<span class="s1">\end{landscape}</span></pre>
+<p><strong>Place text and Figure side by side</strong>: <a href="https://tex.stackexchange.com/a/111397/88745">This </a>question mentions how space around the image can be managed</p>
+<pre class="p1">\usepackage{wrapfig}
+\begin{wrapfigure}{r}{4cm} //first option is placement (l,r), second width
+\includegraphics[]{abc.pdf}
+\caption{}
+\label{}
+\end{wrap figure}</pre>
+<p class="p1"><strong>Show complete paper reference (title, author name, etc) without citation</strong>:</p>
+<pre class="p1">\usepackage{bibentry}
+\nobibliography*</pre>
+<p class="p1">Write above two lines in the document heading in the same order, and then in the main document, for citing purpose write  <em>\bibentry{paperkey} </em></p>
+<p class="p1"><strong>Shrink a table if it moves outside the text area: </strong></p>
+<p class="p1">Use resizebox as explained in <a href="http://tex.stackexchange.com/a/10864/88745" target="_blank" rel="noopener">this</a> Stackoverflow answer.</p>

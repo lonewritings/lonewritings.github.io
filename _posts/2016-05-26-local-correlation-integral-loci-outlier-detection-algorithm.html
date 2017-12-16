@@ -1,0 +1,43 @@
+---
+layout: post
+title: Local Correlation Integral (LOCI) - Outlier Detection Algorithm
+date: 2016-05-26 14:56:56.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Notes
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '23197148984'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<p>Local Correlation Integral (LOCI) is a density based approach for outlier analysis. It is local in nature, i.e., uses only nearby data points in terms of distance to compute density of a point. In this algorithm we have one tunable parameter - $latex \delta&amp;s=2 $. Personally, I believe that we need to tune $latex k&amp;s=2 $ also according to data distribution. LOCI works with following steps</p>
+<ol>
+<li style="text-align:center;"> Compute density, $latex M(X,\epsilon)&amp;s=2 $ of data point $latex X&amp;s=2 $ as the number of neighbours within distance $latex \epsilon&amp;s=2 $. Here, density is known as counting neighbourhood of data point $latex X&amp;s=2 $<br />
+$latex<br />
+M(X,\epsilon) = COUNT_{(Y:dist(X,Y) \leq \epsilon; Y \in datapoints )} Y&amp;s=2$</li>
+<li style="text-align:center;"> Compute average density, $latex AM(X,\epsilon,\delta)&amp;s=2 $ of data point $latex   X&amp;s=2 $ as the MEAN(density of neighbours of $latex X&amp;s=2$ within distance, $latex   \delta&amp;s=2$). Here, $latex \delta&amp;s=2$ is known as sampling neighbourhood of $latex X&amp;s=2$<br />
+$latex AM(X,\epsilon,\delta) = MEAN_{(Y:dist(X,Y) \leq \delta)} M(Y,\epsilon)&amp;s=2$</p>
+<p>The value of $latex \epsilon&amp;s=2$ is always set to be half of $latex \delta&amp;s=2$ in order to enable fast approximation. Therefore, we need to tune $latex  \delta&amp;s=2$ for accuracy without touching $latex \epsilon&amp;s=2$</li>
+<li style="text-align:center;"> Compute Multi-Granularity Deviation Factor (MDEF) at distance, $latex  \delta&amp;s=2$ as                                                                                                                                                                    $latex {MDEF}(X,\epsilon,\delta) = \frac{AM(X,\epsilon,\delta) - M(X,\epsilon)}{AM(X,\epsilon,\delta)}&amp;s=3 $&nbsp;
+<p style="text-align:left;">This factor shows the deviation of $latex  M&amp;s=2$ from $latex  AM&amp;s=2$ for $latex  X&amp;s=2$. Since this computation only considers local/neighbour points, therefore LOCI is referred as local in nature. The larger the value of MDEF, the greater is the outlier score. We use multiple values of $latex  \delta&amp;s=2$ to compute MDEF. Mostly we start with a radius containing 20 points to a maximum of radius spanning most of data.</p>
+</li>
+<li style="text-align:center;">In this step, the deviation of $latex  M&amp;s=2$ from $latex  AM&amp;s=2$ is converted into binary label, i.e., whether $latex  X&amp;s=2$ is outlier or not. For this, we use $latex  \sigma(X,\epsilon,\delta)&amp;s=2$ metric as<br />
+$latex \begin{aligned}{\sigma}(X,\epsilon,\delta) = \frac{STD_{(Y:dist(X,Y) \leq \delta)}M(Y,\epsilon)}{AM(X,\epsilon,\delta)}&amp;s=2 \end{aligned}$<br />
+Here, STD refers to standard deviation.</li>
+<li> A data point,$latex  X&amp;s=2$ is declared as an outlier if its MDEF value is greater than $latex  k. \sigma(X,\epsilon,\delta)&amp;s=2 $, where $latex  k&amp;s=2$ is chosen to be 3.</li>
+</ol>
+<p>Reference:</p>
+<ol>
+<li> I have understood this algorithm from book: Outlier Analysis by Charu Aggarwal</li>
+</ol>

@@ -1,0 +1,42 @@
+---
+layout: post
+title: Confidence and Prediction Interval
+date: 2016-03-30 20:54:11.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Notes
+tags:
+- Confidence interval
+- prediction interval
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '22672496477'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<div class="article-header"></div>
+<div class="article-content entry-content">
+<div dir="ltr">
+<div>
+<div>In Machine Learning, we often come across the terms - Confidence and Prediction intervals.  Both of these represent two different important concepts while interpreting the statistical results. Recently,  I came across to these terms while playing with linear predictive models. Therefore, my explanation of terms will be in sync with these models. In modelling, we use known values (predictive variables) to predict the unknown value (target variable). Here, I won't go for mathematical representation.</div>
+<div></div>
+</div>
+<div><b>Confidence Interval (CI): </b>CI represents the range of values specified by a lower and a higher bound. CI means that it contains <i>X</i>% of the true values of unknown variable, <i>Y</i>. For example, a 95% confidence interval means that it will contain 95% of true values  of <i>Y</i>. In other words, there is a 0.95 probability that the values this range contains are the true values of<i>Y. </i>To be specific, CI is always related to  average/mean value of a variable. Therefore, whenever we calculate CI for an unknown variable we always estimate the mean value of a variable and not the exact individual value of a variable.</div>
+<div></div>
+<div><b>Prediction Interval (PI): </b>The <i>X</i>% of PI is interpreted in the same manner as that of CI. The only difference is that it does not represent the mean value of an unknown variable, but it shows the individual values of a variable. This means that PI should be wider than CI and both PI and CI should be aligned to same central point/plane. In fact, the former statement is true and the central plane/point is commonly known as regression plane.</div>
+<p>&nbsp;</p>
+<p><strong>Reference:</strong></p>
+</div>
+<ol>
+<li>Book - An introduction to statistical Learning by Hastie, Tibshirani et al. Page # 82.</li>
+</ol>
+</div>

@@ -1,0 +1,76 @@
+---
+layout: post
+title: Side by side latex figure/table placement
+date: 2017-08-10 07:12:24.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- latex
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '8111974474'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<p>1.  Place two figures side by side with separate captions and labels [copied from https://tex.stackexchange.com/a/37582/88745]</p>
+<pre><code><span class="kwd">\usepackage{subfigure}
+\begin</span><span class="pun">{</span><span class="pln">figure</span><span class="pun">}</span>
+<span class="kwd">\centering</span>
+<span class="kwd">\parbox</span><span class="pun">{</span><span class="lit">5cm</span><span class="pun">}{</span>
+<span class="kwd">\includegraphics</span><span class="pun">[</span><span class="pln">width</span><span class="pun">=</span><span class="lit">5cm</span><span class="pun">]{</span><span class="pln">img1</span><span class="pun">}</span>
+<span class="kwd">\caption</span><span class="pun">{</span><span class="pln">First.</span><span class="pun">}</span>
+<span class="kwd">\label</span><span class="pun">{</span><span class="pln">fig:2figsA</span><span class="pun">}}</span>
+<span class="kwd">\qquad</span>
+<span class="kwd">\begin</span><span class="pun">{</span><span class="pln">minipage</span><span class="pun">}{</span><span class="lit">5cm</span><span class="pun">}</span>
+<span class="kwd">\includegraphics</span><span class="pun">[</span><span class="pln">width</span><span class="pun">=</span><span class="lit">5cm</span><span class="pun">]{</span><span class="pln">img2</span><span class="pun">}</span>
+<span class="kwd">\caption</span><span class="pun">{</span><span class="pln">Second.</span><span class="pun">}</span>
+<span class="kwd">\label</span><span class="pun">{</span><span class="pln">fig:2figsB</span><span class="pun">}</span>
+<span class="kwd">\end</span><span class="pun">{</span><span class="pln">minipage</span><span class="pun">}</span>
+<span class="kwd">\end</span><span class="pun">{</span><span class="pln">figure</span><span class="pun">}
+</span></code></pre>
+<p>2. Place Table and a Figure side by side.   [source:https://tex.stackexchange.com/a/265891/88745]</p>
+<pre class="lang-tex prettyprint prettyprinted"><code><span class="kwd">\documentclass</span><span class="pun">{</span><span class="pln">article</span><span class="pun">}</span>
+<span class="kwd">\usepackage</span><span class="pun">{</span><span class="pln">graphicx</span><span class="pun">}</span>
+<span class="kwd">\usepackage</span><span class="pun">{</span><span class="pln">capt-of</span><span class="pun">}</span><span class="com">% or \usepackage{caption}</span>
+<span class="kwd">\usepackage</span><span class="pun">{</span><span class="pln">booktabs</span><span class="pun">}</span>
+<span class="kwd">\usepackage</span><span class="pun">{</span><span class="pln">varwidth</span><span class="pun">}</span>
+
+<span class="kwd">\begin</span><span class="pun">{</span><span class="pln">document</span><span class="pun">}</span>
+<span class="kwd">\begin</span><span class="pun">{</span><span class="pln">table</span><span class="pun">}[</span><span class="pln">ht</span><span class="pun">]</span>
+  <span class="kwd">\begin</span><span class="pun">{</span><span class="pln">varwidth</span><span class="pun">}[</span><span class="pln">b</span><span class="pun">]{</span><span class="pln">0.6</span><span class="kwd">\linewidth</span><span class="pun">}</span>
+    <span class="kwd">\centering</span>
+    <span class="kwd">\begin</span><span class="pun">{</span><span class="pln">tabular</span><span class="pun">}{</span><span class="pln"> l r r r </span><span class="pun">}</span>
+      <span class="kwd">\toprule</span><span class="pln">
+      Student </span><span class="typ">&amp;</span><span class="pln"> Hours/week </span><span class="typ">&amp;</span><span class="pln"> Grade </span><span class="kwd">\</span>
+      <span class="kwd">\midrule</span><span class="pln">
+      Ada Lovelace </span><span class="typ">&amp;</span><span class="pln"> 2 </span><span class="typ">&amp;</span><span class="pln"> A </span><span class="kwd">\</span><span class="pln">
+      Linus Thorvalds </span><span class="typ">&amp;</span><span class="pln"> 8 </span><span class="typ">&amp;</span><span class="pln"> A </span><span class="kwd">\</span><span class="pln">
+      Bruce Willis </span><span class="typ">&amp;</span><span class="pln"> 12 </span><span class="typ">&amp;</span><span class="pln"> F </span><span class="kwd">\</span><span class="pln">
+      Richard Stallman </span><span class="typ">&amp;</span><span class="pln"> 10 </span><span class="typ">&amp;</span><span class="pln"> B </span><span class="kwd">\</span><span class="pln">
+      Grace Hopper </span><span class="typ">&amp;</span><span class="pln"> 12 </span><span class="typ">&amp;</span><span class="pln"> A </span><span class="kwd">\</span><span class="pln">
+      Alan Turing </span><span class="typ">&amp;</span><span class="pln"> 8 </span><span class="typ">&amp;</span><span class="pln"> C </span><span class="kwd">\</span><span class="pln">
+      Bill Gates </span><span class="typ">&amp;</span><span class="pln"> 6 </span><span class="typ">&amp;</span><span class="pln"> D </span><span class="kwd">\</span><span class="pln">
+      Steve Jobs </span><span class="typ">&amp;</span><span class="pln"> 4 </span><span class="typ">&amp;</span><span class="pln"> E </span><span class="kwd">\</span>
+      <span class="kwd">\bottomrule</span>
+    <span class="kwd">\end</span><span class="pun">{</span><span class="pln">tabular</span><span class="pun">}</span>
+    <span class="kwd">\caption</span><span class="pun">{</span><span class="pln">Student Database</span><span class="pun">}</span>
+    <span class="kwd">\label</span><span class="pun">{</span><span class="pln">table:student</span><span class="pun">}</span>
+  <span class="kwd">\end</span><span class="pun">{</span><span class="pln">varwidth</span><span class="pun">}</span><span class="com">%</span>
+  <span class="kwd">\hfill</span>
+  <span class="kwd">\begin</span><span class="pun">{</span><span class="pln">minipage</span><span class="pun">}[</span><span class="pln">b</span><span class="pun">]{</span><span class="pln">0.4</span><span class="kwd">\linewidth</span><span class="pun">}</span>
+    <span class="kwd">\centering</span>
+    <span class="kwd">\includegraphics</span><span class="pun">[</span><span class="pln">width</span><span class="pun">=</span><span class="lit">40mm</span><span class="pun">]{</span><span class="pln">example-image</span><span class="pun">}</span>
+    <span class="kwd">\captionof</span><span class="pun">{</span><span class="pln">figure</span><span class="pun">}{</span><span class="pln">2-D scatterplot of the Student Database</span><span class="pun">}</span>
+    <span class="kwd">\label</span><span class="pun">{</span><span class="pln">fig:image</span><span class="pun">}</span>
+  <span class="kwd">\end</span><span class="pun">{</span><span class="pln">minipage</span><span class="pun">}</span>
+<span class="kwd">\end</span><span class="pun">{</span><span class="pln">table</span><span class="pun">}</span>
+<span class="kwd">\end</span><span class="pun">{</span><span class="pln">document</span><span class="pun">}</span></code></pre>

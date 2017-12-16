@@ -1,0 +1,39 @@
+---
+layout: post
+title: Control Remote Server via VNC GUI Interface
+date: 2016-05-09 12:45:15.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Miscellaneous
+tags:
+- remote-server
+- VNC
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '22630823047'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<p>Following steps are required to control remote server via GUI</p>
+<ol>
+<li>Install tightvnc on server machine with following steps [1,2]</li>
+<li>Install vncviewer on client machine</li>
+<li>Start vncserver on server machine by typing vncserver on command prompt. Detailed instructions are mentioned in [1,2]</li>
+<li>Identify the port on which vncserver is listening by running                                                      sudo lsof -i -P | grep -i "listen"</li>
+<li>After identifying the listening port, start vncviewer on client machine by attaching port address with the Ip address of vncserver, say if server address is 192.168.x.y, and listening port is 5901; then you can concatenate server and port address as 192.168.x.y:5901</li>
+</ol>
+<p>&nbsp;</p>
+<p><strong>Refrences</strong></p>
+<ol>
+<li>https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-14-04</li>
+<li>http://www.liquidweb.com/kb/how-to-install-vnc-server-on-ubuntu-14-04-lts/</li>
+</ol>

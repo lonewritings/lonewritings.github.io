@@ -1,0 +1,34 @@
+---
+layout: post
+title: Latex space reducing hacks
+date: 2017-08-10 10:24:35.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- latex
+tags: []
+meta:
+  _publicize_job_id: '8116069688'
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<ol>
+<li>Reduce space above and below equations: Place following lines after \begin{document}</li>
+</ol>
+<pre>\setlength{\abovedisplayskip}{2pt}
+\setlength{\belowdisplayskip}{2pt}</pre>
+<p>2.  Reduce space above and below section/subsection titles. Place these lines before beginning the document.</p>
+<p class="lang-tex prettyprint prettyprinted"><code><span class="kwd">\usepackage[compact]{titlesec}<br />
+\titlespacing</span><span class="pln">*</span><span class="pun">{</span><span class="kwd">\section</span><span class="pun">} </span><span class="pun">{</span><span class="lit">0pt</span><span class="pun">}{</span><span class="pln">2</span><span class="kwd">\baselineskip</span><span class="pun">}{</span><span class="pln">3</span><span class="kwd">\baselineskip</span><span class="pun">}<br />
+<span class="kwd">\titlespacing</span><span class="pln">*</span>{<span class="kwd">\subsection</span>} {<span class="lit">0pt</span>}{<span class="pln">2</span><span class="kwd">\baselineskip</span>}{<span class="pln">3</span><span class="kwd">\baselineskip</span>}<br />
+</span></code></p>
+<p>This answer is copied from <a href="https://tex.stackexchange.com/a/108747/88745" target="_blank" rel="noopener">this</a> StackOverflow link. In Springer, llncs format I found this sucks but a hack around the same is provided in <a href="https://tex.stackexchange.com/a/105577/88745">this </a>StackOverflow answer. It really works!!.</p>

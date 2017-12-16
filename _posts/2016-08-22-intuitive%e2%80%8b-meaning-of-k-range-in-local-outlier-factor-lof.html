@@ -1,0 +1,34 @@
+---
+layout: post
+title: Intuitive​ meaning of k range in Local Outlier Factor (LOF)
+date: 2016-08-22 18:49:40.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Notes
+tags:
+- lof
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '26032946372'
+author:
+  login: loneharoon
+  email: haroon.it@gmail.com
+  display_name: Haroon Rashid
+  first_name: Haroon Rashid
+  last_name: Lone
+---
+<p>The <a href="https://en.wikipedia.org/wiki/Local_outlier_factor" target="_blank">Local Outlier Factor</a> (LOF) is a well-known outlier detection algorithm. In the <a href="http://wp.me/p454Mj-ey">previous </a>post, I noted down the steps of LOF and here I will discuss its <em>k</em> parameter.  The<em> k</em> parameter often lands the users of LOF into difficulty, but while looking at the meaning of <em>k</em> parameter and the respective application domain, I find it is easy to select a <i>k</i> range. The authors of LOF suggest to use a range of <em>k</em> values instead of using a selective value. This is because we cannot generalise a particular value of k over various datasets following diverse underlying data distributions. Now, let us understand how to select lower (<em>lwrval</em>) and upper (<em>uprval</em>) values of the <em>k</em> range.</p>
+<p>To explain it further, let us consider a simple scenario shown in below figure</p>
+<p><img class=" size-full wp-image-1199 aligncenter" src="{{ site.baseurl }}/assets/screen-shot-2016-08-22-at-11-02-08.png" alt="Screen Shot 2016-08-22 at 11.02.08" width="587" height="526" /></p>
+<p>This figure shows the energy consumption of some imaginary home for one month (30 days). Each small circle represents energy consumption of a particular day, where a number above the circle shows the corresponding day of the month.  Nearby circles marked within red clusters  (A, B, C, D, E) represent days that follow a similar pattern in energy consumption as compared to remaining days.</p>
+<p>To use LOF on such a dataset, we need to set the range of <em>k</em> values instead of a single <em>k</em> value. Note that <em>lwrval</em> and <em>uprval</em> are domain dependent. According to LOF paper, <em>lwrval</em> and <em>uprval</em> are defined as:</p>
+<ul>
+<li><strong><em>lwrval</em></strong>: This refers to the minimal cluster size which consists of similar behaving points, <strong>and we believe this similarity is not due to some random cause</strong>. This means that we assume a cluster with a size lower than <em>lwrval</em> represent outliers. For example, if I consider <em>lwrval = 3</em>, then clusters A and B represent outliers because none of the points within these clusters has three more similar points/neighbours. At the same time, points within clusters C, D, and E represent normal points because each of them has three more like neighbours.</li>
+<li><strong><em>uprval</em></strong>: This suggests to the upper optimal number of points to be similar. In other words, we believe that <em>uprval</em> number of points must be similar in the considered application domain. For example, In the energy domain, I know that at least for 6 days (working days of a week) energy consumption is similar due to the occupancy behaviour. So, I set the <em>uprval = 6</em>. No doubt there can be a cluster with size greater than <em>uprval</em>, but our reasoning on a specific dataset motivates us for some optimal <em>uprval</em>. Consider an another example where we assume that occupants of a home change on a weekly basis - say there were 5,  10, 15, and 20 occupants on the first, second, third and fourth week of a month respectively. Consequently, the energy consumption on four different weeks should be similar intra-week and different inter-week. This example suggests that we should get four clusters corresponding to four weeks and the size of each cluster should be 7 (number of weekdays). So, our <em>uprval</em> is 7 in this example.</li>
+</ul>
+<p>I believe now <em>lwrval</em> and <em>uprval</em> limits can be easily interpreted for any application domain. Therefore, according to original LOF paper now we can calculate LOF outlier values on a set of <em>k</em> values defined by <em>lwrval</em> and <em>uprval</em>. In the <a href="http://wp.me/p454Mj-kF" target="_blank">next post</a>, I will explain the above figure further and show how a particular k value effects outlier score.</p>
