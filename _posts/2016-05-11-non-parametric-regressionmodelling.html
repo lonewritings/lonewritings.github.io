@@ -17,11 +17,6 @@ meta:
   _rest_api_client_id: "-1"
   _publicize_job_id: '22697693243'
 author:
-  login: loneharoon
-  email: haroon.it@gmail.com
-  display_name: Haroon Rashid
-  first_name: Haroon Rashid
-  last_name: Lone
 ---
 <p>In parametric regression/modelling we set different parameters to model our data. Say if w know the underlying data distribution is normal then we can set different combination of mean and standard-deviations until the model will reflect underlying data perfectly. All right! But how will you model the data if you don't know the underlying data distribution. For example, in the below figure, underlying data distribution is uniform but on assuming that data is normal we got the estimate as shown, which is normal. This shows that we cannot rely on such parametric models if are not sure of underlying data distribution.<img class="  wp-image-317 aligncenter" src="{{ site.baseurl }}/assets/screen-shot-2016-05-11-at-14-40-13.png" alt="Screen Shot 2016-05-11 at 14.40.13" width="448" height="289" /></p>
 <p><strong>Non-Parametric Regression/Modelling or Kernel Density Estimation</strong>: In this, we use underlying data and some kernel function to model the data. The main idea is that at the point of interest we observe the neighboring points and  estimate value as a function of there positions/values. The neighboring points get weights according to kernel function used. The most common kernel function used is Gaussian kernel. Please find remaining  kernels used at <a href="https://en.wikipedia.org/wiki/Kernel_(statistics)">this </a>wiki link. An important tuning parameter in this technique is the width of the neighboring region considered for estimation, commonly known as bandwidth. This parameter controls the smoothness of estimation. Lower values results in more tightness but also include some noise, while as higher values result in more smoothness. But computing optimal value of bandwidth is not our concern as there exist number of approaches which calculate this value. The effect of bandwidth using  Gaussian kernel is shown in below figure.</p>
