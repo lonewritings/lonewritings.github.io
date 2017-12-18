@@ -23,6 +23,7 @@ twitter_username:
 github_username:  
 
 # Build settings
+google_analytics: UA-111340297-1
 markdown: kramdown
 theme: minima
 plugins:

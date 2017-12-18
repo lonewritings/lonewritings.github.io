@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title:  "Lessons from BuildSys 2017"
 date:   2017-12-17 21:50:00 +0000
 categories: 
@@ -28,5 +29,4 @@ Till now, this all is true story but now let us try to understand lessons from t
 Let's now finish the remaining story. The conference finished around 6 PM on the second/last day, and I left for the hotel. My return flight was on next day from Amsterdam, so I vacated hotel early morning next morning and took a return flight from Schiphol Airport, Amsterdam. Another bad thing that happened was that markets close early (around 5 PM) in Delft and our conference used to end till 6 or 8 PM, so I missed completely Dutch market liveness or Dutch culture. Next time, you get an opportunity to present at the different place, reach one day early and leave one day late to roam in the city, if budget allows.
 
 Here are some of my pictures at Delft with one of my friends, Sangeeth. Sangeeth graduated from IIIT Delhi and is now doing PhD at TU Eindhoven. Fortunately, he was in the city on the same day, and we met.
-![image-title-here]({{"/assets/buildsys2017_1.jpg"}}){:class="img-responsive"}
-![image-title-here](/assets/buildsys2017_2.jpg){:class="img-responsive"}
+
